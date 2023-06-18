@@ -1,14 +1,14 @@
-var cant_productos = parseFloat(prompt("Ingrese la cantidad de entradas que desea comprar"));
+var cant_entradas = parseFloat(prompt("Ingrese la cantidad de entradas que desea comprar"));
 var precio_total = 0;
-var valor_producto = 0;
+var precio_entrada = 0;
 
-consultar_productos();
+get_entradas();
 
-function consultar_productos() {
-  for (let i = 1; i <= cant_productos; i++) {
-    valor_producto = producto_elegido(i);
-    precio_total = precio_total + valor_producto;
-    alert("El precio de la entrada número " + i + " es de " + valor_producto + " y el valor total de su compra es de " + precio_total + ". Le faltan " + (cant_productos - i) + " productos");
+function get_entradas() {
+  for (let i = 1; i <= cant_entradas; i++) {
+    precio_entrada = entrada_elegido(i);
+    precio_total = precio_total + precio_entrada;
+    alert("El precio de la entrada número " + i + " es de " + precio_entrada + " y el precio total de su compra es de " + precio_total + ". Le faltan " + (cant_entradas - i) + " entradas");
   }
 
   console.log("El precio total de la compra actualmente es de " + precio_total);
@@ -21,27 +21,27 @@ function consultar_productos() {
   console.log("El precio total de la compra final es de " + precio_total);
 }
 
-function producto_elegido(i) {
+function entrada_elegido(i) {
   let continuar = false;
-  let valor_producto = 0;
+  let precio_entrada = 0;
 
   do {
-    let elegir_producto = prompt("Ingrese el número del show a comprar, del 1 al 6.");
+    let elegir_entrada = prompt("Ingrese el número del show a comprar, del 1 al 6.");
 
-    if (elegir_producto <= 6 && elegir_producto >= 1) {
-      alert("Eligió el producto " + elegir_producto);
-      valor_producto = obtener_precio_producto(elegir_producto, i);
+    if (elegir_entrada <= 6 && elegir_entrada >= 1) {
+      alert("Eligió la entrada " + elegir_entrada);
+      precio_entrada = obtener_precio_entrada(elegir_entrada, i);
       continuar = true;
     } else {
-      alert("No existe el producto " + elegir_producto);
+      alert("No existe la entrada " + elegir_entrada);
     }
   } while (continuar !== true);
 
-  return valor_producto;
+  return precio_entrada;
 }
 
-function obtener_precio_producto(elegir_producto, i) {
-  const precios_productos = {
+function obtener_precio_entrada(elegir_entrada, i) {
+  const precios_entradas = {
     "1": 3500,
     "2": 2200,
     "3": 2000,
@@ -50,12 +50,12 @@ function obtener_precio_producto(elegir_producto, i) {
     "6": 1500
   };
 
-  if (precios_productos.hasOwnProperty(elegir_producto)) {
-    const precio = precios_productos[elegir_producto];
+  if (precios_entradas.hasOwnProperty(elegir_entrada)) {
+    const precio = precios_entradas[elegir_entrada];
     console.log(`El precio del show ${i} es de $ ${precio}`);
     return precio;
   } else {
-    console.warn("No eligió ninguno de nuestros productos");
+    console.warn("No eligió un show válido");
     return null;
   }
 }
