@@ -40,7 +40,7 @@ console.log(eventos);
 function filtrarEventos(tituloEvento) {
   let resultado = eventos.filter((evento) => evento.titulo.toUpperCase().includes(tituloEvento.toUpperCase()));
   if (resultado.length === 0) {
-    console.warn('No se encontraron eventos con dicho titulo:', tituloEvento)
+    console.warn('No se encontraron eventos que contengan esta palabra en el título:', tituloEvento)
     continuar = false;
   } else {
     console.table(resultado)
