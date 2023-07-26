@@ -40,4 +40,5 @@ const arrayeventos = [
 
 
 
-const carritoEventos = JSON.parse(localStorage.getItem('carritoEventos')) || []
+const eventoSeleccionado = JSON.parse(localStorage.getItem('eventoSeleccionado')) 
+

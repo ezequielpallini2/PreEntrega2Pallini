@@ -1,13 +1,6 @@
 // Acceso al DOM, aquí :)
-const eventosEnCarrito = document.querySelector('span#eventosEnCarrito')
 const container = document.querySelector('div#container.container')
 const inputSearch = document.querySelector('input#inputSearch')
-
-function mostrarTotalProdsEnCarrito() {
-    eventosEnCarrito.textContent = carritoEventos.length
-}
-
-carritoEventos.length > 0 && mostrarTotalProdsEnCarrito()
 
 function retornarCardError() {
     return `<div class="card-error">
@@ -19,28 +12,27 @@ function retornarCardError() {
 
 
 function retornarCardHTML({ id, imagen, description, price } = evento ) {
-   return `<div class="div-card" style="background-image: url('${imagen}'); background-size: cover;">
+   return `<div class="div-card" style="background-image: url('${imagen}'); background-size: cover;  background-color: rgba(255, 255, 255, 0.1);">
                 <div class="evento">
                     <p>${description}</p> 
                 </div>
                 <div class="prenda">
                     <p>$ ${price}</p>
                 </div>
-                <div class="comprar"><button class="button button-outline button-add" id="${id}">comprar</button></div>
+                <a href="checkout.html"><button class="button button-outline button-add" id="${id}" >comprar</button></a>
            </div>`
 }
-
 function activarClickEnBotones() {
-    const botones = document.querySelectorAll('button.button.button-outline.button-add')
-    botones.forEach((boton)=> {
-        boton.addEventListener('click', ()=> {
-            let evento = arrayeventos.find((evento)=> evento.id === parseInt(boton.id))
-            carritoEventos.push(evento)
-            localStorage.setItem('carritoEventos', JSON.stringify(carritoEventos))
-            mostrarTotalProdsEnCarrito()
-        })
-    })
+    const botones = document.querySelectorAll('button.button.button-outline.button-add');
+    botones.forEach((boton) => {
+        boton.addEventListener('click', () => {
+            let evento = arrayeventos.find((evento) => evento.id === parseInt(evento.id));
+            localStorage.setItem('eventoSeleccionado', JSON.stringify(evento));
+        });
+    });
 }
+
+
 
 function cargareventos(array) {
     container.innerHTML = ""
